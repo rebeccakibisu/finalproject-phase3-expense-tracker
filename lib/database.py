@@ -1,18 +1,17 @@
 # lib/database.py
-# Handles database connection and table creation using sqlite3.
-# Uses a standalone database file named 'database.db' in the project root.
+# Handles database connection and table creation using SQLite3.
+# A standalone database file 'database.db' is created in the project root.
 
 import sqlite3
 
-# Connect to a standalone database (creates automatically if it doesn’t exist)
+# Connect to a local database file (auto-created if missing)
 CONN = sqlite3.connect("database.db")
 CURSOR = CONN.cursor()
 
 def create_tables():
-    """
-    Create all database tables if they don't exist.
-    This ensures smooth operation on first run.
-    """
+    """Creates all required tables if they don't exist."""
+    
+    # Create Users table
     CURSOR.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,6 +19,7 @@ def create_tables():
         )
     ''')
 
+    # Create Categories table
     CURSOR.execute('''
         CREATE TABLE IF NOT EXISTS categories (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,7 +27,7 @@ def create_tables():
         )
     ''')
 
-    # Transactions now include actual, budgeted, and variance columns
+    # Create Transactions table with budget, actual, and variance
     CURSOR.execute('''
         CREATE TABLE IF NOT EXISTS transactions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

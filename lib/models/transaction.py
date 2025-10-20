@@ -1,6 +1,5 @@
 # lib/models/transaction.py
-# Represents individual financial transactions.
-# Includes both actual and budgeted amounts, and auto-calculates variance.
+# Represents a transaction and handles all related CRUD and data logic.
 
 from lib.database import CURSOR, CONN
 
@@ -11,11 +10,11 @@ class Transaction:
         self.category_id = category_id
         self.amount = amount
         self.budgeted_amount = budgeted_amount
-        self.variance = budgeted_amount - amount  # Positive = under budget, Negative = overspent
+        self.variance = budgeted_amount - amount  # positive = under budget
         self.date = date
 
     def save(self):
-        """Save transaction record including variance."""
+        """Save a new transaction to the database."""
         CURSOR.execute(
             "INSERT INTO transactions (user_id, category_id, amount, budgeted_amount, variance, date) VALUES (?, ?, ?, ?, ?, ?)",
             (self.user_id, self.category_id, self.amount, self.budgeted_amount, self.variance, self.date)
@@ -25,7 +24,7 @@ class Transaction:
 
     @classmethod
     def get_all(cls):
-        """Fetch all transactions joined with user and category details."""
+        """Retrieve all transactions joined with user and category names."""
         rows = CURSOR.execute('''
             SELECT t.id, u.name, c.name, t.amount, t.budgeted_amount, t.variance, t.date
             FROM transactions t

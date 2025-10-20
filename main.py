@@ -1,11 +1,10 @@
 # main.py
-# This is the main entry point of the Expense Tracker & Budget Monitor application.
-# It initializes the database tables (if they don’t exist)
-# and launches the Command-Line Interface (CLI) for user interaction.
+# Entry point of the Expense Tracker & Budget Monitor application.
+# This file initializes database tables and starts the CLI menu.
 
 from lib.database import create_tables
 from lib.cli import main_menu
 
 if __name__ == "__main__":
-    create_tables()   # Create database tables if not yet created
-    main_menu()       # Start the interactive CLI
+    create_tables()   # Ensure required tables exist
+    main_menu()       # Launch the main interactive menu
