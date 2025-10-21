@@ -11,7 +11,7 @@ It is built entirely using Python and SQLite3 — no external libraries are requ
 The Expense Tracker & Budget Monitor is a Python-based finance management tool designed to track actual expenses versus budgeted amounts and calculate the variance (difference).  
 It demonstrates practical use of databases, SQL queries, Python classes, and command-line interfaces without using any ORM libraries.
 
-This project fulfills the requirements of Phase 3 Final Project, focusing on:
+This project is focusing on:
 - Database design and SQL query writing
 - Object-oriented programming in Python
 - CRUD (Create, Read, Update, Delete) operations
